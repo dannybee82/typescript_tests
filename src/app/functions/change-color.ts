@@ -16,7 +16,7 @@ export class ChangeColor {
         });
     }
 
-    private addClickListener(targetId: string): void {
+    private addClickListener = (targetId: string): void => {
         if(document.getElementById(targetId)) {
             const elem: HTMLElement | null =  document.getElementById(targetId);
     

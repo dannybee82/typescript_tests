@@ -2,7 +2,7 @@ import { ButtonInterface } from "../interfaces/button.interface";
 
 export class CreateButtons {
 
-    create(targetElement: string, buttons: ButtonInterface[]): void {
+    appendButtons = (targetElement: string, buttons: ButtonInterface[]): void => {
         const elem: HTMLElement | null = document.getElementById(targetElement);
 
         if(elem) {
@@ -13,6 +13,14 @@ export class CreateButtons {
                 elem.appendChild(button);
             });
         }
+    }
+
+    createButton = (id: string, text: string): HTMLButtonElement => {
+        const button: HTMLButtonElement = document.createElement('button');
+        button.id = id;
+        button.textContent = text;
+
+        return button;
     }
 
 }

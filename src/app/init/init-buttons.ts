@@ -17,7 +17,7 @@ export class InitButtons {
     private _targetResultElement: string = "dynamicButtonResult";
 
     constructor() {
-        this._createButtons.create(this._targetElement, this._buttons);
+        this._createButtons.appendButtons(this._targetElement, this._buttons);
         this.addClickListeners();
     }
 
