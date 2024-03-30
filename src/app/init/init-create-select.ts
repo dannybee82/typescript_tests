@@ -163,20 +163,27 @@ export class InitCreateSelect {
    private _sharedChangeColor: SharedChangeColor = new SharedChangeColor();
 
    constructor() {
-    this._createSelectElement.create(this._parentDivId, 'select-color', this._allColors);
+    this._createSelectElement.create(this._parentDivId, 'select-color', this._allColors, true);
     this.addChangeListener('select-color');
    }
 
-   private addChangeListener = (targetId: string): void => {
+   private addChangeListener(targetId: string): void {
         const elem: HTMLElement | null = document.getElementById(targetId);
 
         if(elem) {
             const select: HTMLSelectElement = elem as HTMLSelectElement;
-            elem.addEventListener('change', () => this.selectColor(select.value ?? null), false);
+            elem.addEventListener(
+                'change', 
+                () => {
+                    this.selectColor(select.value ?? null);
+                    elem.className = (select.value ?? null != null) ? 'item-color-' + select.value : 'default-select-color';
+                },
+                false
+            );            
         }
    }
 
-   private selectColor = (color: string | null): void => {
+   private selectColor(color: string | null): void {
         if(color) {
             this._sharedChangeColor.changeColor(this._targetDivId, color);
         }

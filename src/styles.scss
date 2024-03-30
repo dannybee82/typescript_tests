@@ -1,0 +1,100 @@
+@use 'sass:color';
+@use 'sass:string';
+
+%button-border {    
+    border-radius: 5px;
+    border: 1px solid darkgrey;
+    padding: 10px;
+}
+
+@mixin buttonColorWithIds($list) {
+    @each $key, $value in $list {
+        button##{$key} {
+            @if $key == 'yellow' {
+                color: black;
+            } @else {
+                color: white;
+            }            
+            background-color: $value;
+            @extend %button-border;
+        }
+    }
+}
+
+@mixin createOptionColors($list) {
+    @each $value in $list {
+        .item-color#{'-' + $value} {  
+            $quoted: "'" + $value + "'";
+
+            @if(string.index($quoted, 'grey') != null) {
+                color: #fff;
+            } @else if (string.index($quoted, 'gray') != null) {
+                color: #fff;
+            } @else {
+                color: color.invert(rgba($value, 1), 100%);
+            }
+            
+            background-color: $value;
+        }
+    }
+}
+
+body {
+    background-image: linear-gradient(to bottom, cornflowerblue, lightblue, white);
+    height: 100vh;
+}
+
+select {
+    width: inherit;
+    height: 25px;
+}
+
+option {
+    width: inherit;
+    height: 25px;
+}
+
+label#selectFileLabel {
+    color: white;
+    background-color: blue;
+    @extend %button-border;
+}
+
+input#selectFile {
+    visibility: hidden;
+}
+
+.remove-button {
+    color: white;
+    background-color: darkred;
+    @extend %button-border;
+}
+
+$buttonMap: ('green': green, 'yellow': yellow, 'blue': blue, 'pink': pink, 'purple': purple);
+@include buttonColorWithIds($buttonMap);
+
+$predefinedColors: (aliceblue,antiquewhite,aqua,aquamarine,azure,beige,bisque,black,blanchedalmond,blue,blueviolet,brown,burlywood,cadetblue,chartreuse,chocolate,coral,cornflowerblue,cornsilk,crimson,cyan,darkblue,darkcyan,darkgoldenrod,darkgray,darkgrey,darkgreen,darkkhaki,darkmagenta,darkolivegreen,darkorange,darkorchid,darkred,darksalmon,darkseagreen,darkslateblue,darkslategray,darkslategrey,darkturquoise,darkviolet,deeppink,deepskyblue,dimgray,dimgrey,dodgerblue,firebrick,floralwhite,forestgreen,fuchsia,gainsboro,ghostwhite,gold,goldenrod,gray,grey,green,greenyellow,honeydew,hotpink,indianred,indigo,ivory,khaki,lavender,lavenderblush,lawngreen,lemonchiffon,lightblue,lightcoral,lightcyan,lightgoldenrodyellow,lightgray,lightgrey,lightgreen,lightpink,lightsalmon,lightseagreen,lightskyblue,lightslategray,lightslategrey,lightsteelblue,lightyellow,lime,limegreen,linen,magenta,maroon,mediumaquamarine,mediumblue,mediumorchid,mediumpurple,mediumseagreen,mediumslateblue,mediumspringgreen,mediumturquoise,mediumvioletred,midnightblue,mintcream,mistyrose,moccasin,navajowhite,navy,oldlace,olive,olivedrab,orange,orangered,orchid,palegoldenrod,palegreen,paleturquoise,palevioletred,papayawhip,peachpuff,peru,pink,plum,powderblue,purple,rebeccapurple,red,rosybrown,royalblue,saddlebrown,salmon,sandybrown,seagreen,seashell,sienna,silver,skyblue,slateblue,slategray,slategrey,snow,springgreen,steelblue,tan,teal,thistle,tomato,turquoise,violet,wheat,white,whitesmoke,yellow,yellowgreen);
+@include createOptionColors($predefinedColors);
+
+.default-select-color {
+    color: #000;
+    background-color: #fff;
+}
+
+button#ok {
+    color: #fff;
+    background-color: limegreen;
+    @extend %button-border;
+}
+
+button#cancel {
+    color: #fff;
+    background-color: darkred;
+    @extend %button-border;
+}
+
+button#return {
+    color: #fff;
+    background-color: darkgrey;
+    @extend %button-border;
+}

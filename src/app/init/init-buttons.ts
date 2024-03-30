@@ -21,7 +21,7 @@ export class InitButtons {
         this.addClickListeners();
     }
 
-    private addClickListeners = (): void => {
+    private addClickListeners(): void {
         this._buttons.forEach(element => {
             let elem: HTMLElement | null = document.getElementById(element.id);
 
@@ -32,7 +32,7 @@ export class InitButtons {
         });
     }
 
-    private showText = (text: string): void => {
+    private showText(text: string): void {
         this._changeText.changeText(this._targetResultElement, text);
     }
 

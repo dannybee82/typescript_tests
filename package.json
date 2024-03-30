@@ -1,7 +1,8 @@
 {
   "scripts": {
     "develop": "webpack-dev-server --mode development",
-    "build" : "webpack --mode production && npm run minify && npm run copy",
+    "build": "webpack --mode production && npm run minify && npm run build:scss && npm run copy",
+    "build:scss": "sass --no-source-map src/styles.scss dist/styles.css",
     "minify": "uglifyjs --compress --mangle --output name.min.js --version --verbose",
     "copy": "copy src\\index.html dist\\index.html"
   },
@@ -9,6 +10,7 @@
     "typescript": "^5.4.3"
   },
   "devDependencies": {
+    "sass": "^1.72.0",
     "ts-loader": "^9.5.1",
     "uglify-js": "^3.17.4",
     "webpack": "^5.91.0",
