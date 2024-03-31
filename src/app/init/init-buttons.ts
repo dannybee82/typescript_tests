@@ -5,16 +5,16 @@ import { ButtonInterface } from "../interfaces/button.interface";
 export class InitButtons {
 
     private _buttons: ButtonInterface[] = [
-        {id: 'ok', text: 'Ok button'},
-        {id: 'cancel', text: 'Cancel button'},
-        {id: 'return', text: 'Return button'},
+        {className: 'ok', text: 'Ok button'},
+        {className: 'cancel', text: 'Cancel button'},
+        {className: 'return', text: 'Return button'},
     ];
 
     private _createButtons: CreateButtons = new CreateButtons();
     private _changeText: ChangeText = new ChangeText();
 
-    private _targetElement: string = "dynamicButtons";
-    private _targetResultElement: string = "dynamicButtonResult";
+    private _targetElement: string = ".dynamicButtons";
+    private _targetResultElement: string = ".dynamicButtonResult";
 
     constructor() {
         this._createButtons.appendButtons(this._targetElement, this._buttons);
@@ -22,12 +22,12 @@ export class InitButtons {
     }
 
     private addClickListeners(): void {
-        this._buttons.forEach(element => {
-            let elem: HTMLElement | null = document.getElementById(element.id);
+        this._buttons.forEach(item => {
+            let element: HTMLElement | null = document.querySelector("." + item.className);
 
-            if(elem) {
-                const text: string = elem.textContent ?? '???';
-                elem.addEventListener('click', () => this.showText(text), false);
+            if(element) {
+                const text: string = element.textContent ?? '???';
+                element.addEventListener('click', () => this.showText(text), false);
             }
         });
     }

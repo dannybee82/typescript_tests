@@ -4,7 +4,7 @@ export class CreateImage {
 
     create(imgage: ImageInterface): HTMLImageElement {
         const img: HTMLImageElement = document.createElement('img');
-        img.id = imgage.id;
+        img.className = imgage.className;
         img.src = imgage.base64;
         img.title = imgage.title;
         img.style.width = imgage.width;

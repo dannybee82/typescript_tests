@@ -1,5 +1,5 @@
 export interface ImageInterface {
-    id: string,
+    className: string,
     base64: string,
     title: string,
     width: string,

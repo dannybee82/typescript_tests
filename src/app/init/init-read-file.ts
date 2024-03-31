@@ -5,8 +5,8 @@ import { ImageInterface } from "../interfaces/image.interface";
 
 export class InitReadFile {
 
-    private _targetInputSelectFile: string = "selectFile";
-    private _targetPreviewImage: string = "previewImage";
+    private _targetInputSelectFile: string = ".select-file-input";
+    private _targetPreviewImage: string = ".preview-image";
 
     private _readFile: ReadFile = new ReadFile();
     private _createImage: CreateImage = new CreateImage();
@@ -17,10 +17,10 @@ export class InitReadFile {
     }
     
     private addChangeListener(): void {
-        const elem: HTMLElement | null =  document.getElementById(this._targetInputSelectFile);
+        const element: HTMLElement | null =  document.querySelector(this._targetInputSelectFile);
     
-        if(elem != null && elem instanceof HTMLInputElement) {
-            const input: HTMLInputElement = elem as HTMLInputElement;
+        if(element != null && element instanceof HTMLInputElement) {
+            const input: HTMLInputElement = element as HTMLInputElement;
             input.addEventListener("change", () => this.loadFiles(input.files ?? null), false);
         }
     }
@@ -40,65 +40,64 @@ export class InitReadFile {
     }
 
     private addImage(base64: string): void {
-        let elem: HTMLElement | null =  document.getElementById(this._targetPreviewImage);
+        let element: HTMLElement | null =  document.querySelector(this._targetPreviewImage);
     
-        if(elem) {
+        if(element) {
             const count: number = this.countImages();
 
             const img: ImageInterface = { 
-                id: 'image_' + count,
+                className: 'image_' + count,
                 base64: base64,
                 title: 'Preview image', 
                 width: '250px', 
                 height: 'auto'
             };
 
-            elem.appendChild(this._createImage.create(img));
+            element.appendChild(this._createImage.create(img));
 
             const button = this._createButtons.createButton('remove_image' + count, 'Remove Image');
-            button.className = 'remove-button';
-            button.addEventListener('click', () => this.removeImageAndButton('image_' + count, 'remove_image' + count), false);
-                
-            elem.appendChild(button);
+            button.id = 'remove-button';
+            button.addEventListener('click', () => this.removeImageAndButton('image_' + count, 'remove_image' + count), false);                
+            element.appendChild(button);
         }  
     }
 
     private countImages(): number {
-        let elem: HTMLElement | null =  document.getElementById(this._targetPreviewImage);
+        let element: HTMLElement | null =  document.querySelector(this._targetPreviewImage);
 
-        if(elem) {
-            let images: HTMLCollectionOf<HTMLImageElement> = elem.getElementsByTagName('img');
+        if(element) {
+            let images: NodeListOf<HTMLImageElement> = element.querySelectorAll('img');
             return images.length;
         }
 
         return 0;
     }
 
-    private removeImageAndButton(imageId: string, buttonId: string): void {
-        let elem: HTMLElement | null =  document.getElementById(this._targetPreviewImage);
+    private removeImageAndButton(imageClass: string, buttonClass: string): void {
+        let elem: HTMLElement | null =  document.querySelector(this._targetPreviewImage);
 
         if(elem) {
-            let images: HTMLCollectionOf<HTMLImageElement> = elem.getElementsByTagName('img');
-            let buttons: HTMLCollectionOf<HTMLButtonElement> = elem.getElementsByTagName('button');
+            let images: NodeListOf<HTMLImageElement> = elem.querySelectorAll('img');
+            let buttons: NodeListOf<HTMLButtonElement> = elem.querySelectorAll('button');
 
-            this.removeElement(elem, imageId, images);
-            this.removeElement(elem, buttonId, buttons);
+            this.removeElement(elem, imageClass, images);
+            this.removeElement(elem, buttonClass, buttons);
         }
     }
 
-    private removeElement(parentElement: HTMLElement, elementId: string, elements: HTMLCollectionOf<HTMLImageElement | HTMLButtonElement>): void {
+    private removeElement(parentElement: HTMLElement, className: string, elements: NodeListOf<HTMLImageElement | HTMLButtonElement>): void {
         for(let i = 0; i < elements.length; i++) {
-            if(elements[i].id === elementId) {
+            if(elements[i].className === className) {
                 parentElement.removeChild(elements[i]);
             }
         }
     }
 
     private removeSelectedFiles(): void {
-        const elem: HTMLElement | null =  document.getElementById(this._targetInputSelectFile);
+        const element: HTMLElement | null =  document.querySelector(this._targetInputSelectFile);
 
-        if(elem) {
-            const input: HTMLInputElement = elem as HTMLInputElement;
+        if(element) {
+            const input: HTMLInputElement = element as HTMLInputElement;
             input.value = '';
         }
     }

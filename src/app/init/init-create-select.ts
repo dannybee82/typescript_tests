@@ -157,26 +157,26 @@ export class InitCreateSelect {
 
    private _createSelectElement: CreateSelectElement = new CreateSelectElement();
 
-   private _parentDivId: string = "color-select-div";
-   private _targetDivId: string = "background-test";
+   private _parentDivClass: string = ".color-select-div";
+   private _targetDivClass: string = ".background-test";
 
    private _sharedChangeColor: SharedChangeColor = new SharedChangeColor();
 
    constructor() {
-    this._createSelectElement.create(this._parentDivId, 'select-color', this._allColors, true);
-    this.addChangeListener('select-color');
+    this._createSelectElement.create(this._parentDivClass, 'select-color', this._allColors, true);
+    this.addChangeListener('#select-color');
    }
 
    private addChangeListener(targetId: string): void {
-        const elem: HTMLElement | null = document.getElementById(targetId);
+        const element: HTMLElement | null = document.querySelector(targetId);
 
-        if(elem) {
-            const select: HTMLSelectElement = elem as HTMLSelectElement;
-            elem.addEventListener(
+        if(element) {
+            const select: HTMLSelectElement = element as HTMLSelectElement;
+            select.addEventListener(
                 'change', 
                 () => {
                     this.selectColor(select.value ?? null);
-                    elem.className = (select.value ?? null != null) ? 'item-color-' + select.value : 'default-select-color';
+                    select.className = (select.value ?? null != null) ? 'item-color-' + select.value : 'default-select-color';
                 },
                 false
             );            
@@ -185,7 +185,9 @@ export class InitCreateSelect {
 
    private selectColor(color: string | null): void {
         if(color) {
-            this._sharedChangeColor.changeColor(this._targetDivId, color);
+            this._sharedChangeColor.changeColor(this._targetDivClass, color);
+        } else {
+            this._sharedChangeColor.changeColor(this._targetDivClass, 'white');
         }
    }
 

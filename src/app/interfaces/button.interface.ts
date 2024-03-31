@@ -1,4 +1,4 @@
 export interface ButtonInterface {
-    id: string,
+    className: string,
     text: string
 }

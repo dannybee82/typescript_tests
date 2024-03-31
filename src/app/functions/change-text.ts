@@ -1,10 +1,10 @@
 export class ChangeText {
 
-    changeText(targetId: string, message: string): void {
-        const elem: HTMLElement | null =  document.getElementById(targetId);
+    changeText(targetClass: string, message: string): void {
+        const element: HTMLElement | null =  document.querySelector(targetClass);
 
-        if(elem) {
-            elem.innerText = message;
+        if(element) {
+            element.innerText = message;
         }
     }
 

@@ -7,16 +7,29 @@
     padding: 10px;
 }
 
-@mixin buttonColorWithIds($list) {
+%hover-default {
+    cursor: pointer;
+}
+
+@mixin buttonColors($list) {
     @each $key, $value in $list {
-        button##{$key} {
+        button.#{$key} {
             @if $key == 'yellow' {
                 color: black;
             } @else {
                 color: white;
             }            
             background-color: $value;
-            @extend %button-border;
+            @extend %button-border;            
+        }
+    }
+}
+
+@mixin buttonHovers($list) {
+    @each $key, $value in $list {
+        button.#{$key}:hover {
+            background-color: $value;
+            @extend %hover-default;
         }
     }
 }
@@ -46,7 +59,7 @@ body {
 
 select {
     width: inherit;
-    height: 25px;
+    height: 35px;
 }
 
 option {
@@ -54,24 +67,49 @@ option {
     height: 25px;
 }
 
-label#selectFileLabel {
+.select-file-label {
     color: white;
     background-color: blue;
     @extend %button-border;
 }
 
-input#selectFile {
+.select-file-label:hover {
+    background-color: navy;
+    @extend %hover-default;
+}
+
+input.select-file-input {
     visibility: hidden;
 }
 
-.remove-button {
+.preview-image {
+    max-width: 250px;
+    height: auto;
+}
+
+button#remove-button {
     color: white;
     background-color: darkred;
     @extend %button-border;
 }
 
+button#remove-button:hover {
+    background-color: firebrick;
+    @extend %hover-default;
+}
+
+.background-test {
+    width: 250px;
+    height: 250px;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+
 $buttonMap: ('green': green, 'yellow': yellow, 'blue': blue, 'pink': pink, 'purple': purple);
-@include buttonColorWithIds($buttonMap);
+$buttonHoverMap: ('green': limegreen, 'yellow': gold, 'blue': navy, 'pink': coral, 'purple': violet);
+@include buttonColors($buttonMap);
+@include buttonHovers($buttonHoverMap);
 
 $predefinedColors: (aliceblue,antiquewhite,aqua,aquamarine,azure,beige,bisque,black,blanchedalmond,blue,blueviolet,brown,burlywood,cadetblue,chartreuse,chocolate,coral,cornflowerblue,cornsilk,crimson,cyan,darkblue,darkcyan,darkgoldenrod,darkgray,darkgrey,darkgreen,darkkhaki,darkmagenta,darkolivegreen,darkorange,darkorchid,darkred,darksalmon,darkseagreen,darkslateblue,darkslategray,darkslategrey,darkturquoise,darkviolet,deeppink,deepskyblue,dimgray,dimgrey,dodgerblue,firebrick,floralwhite,forestgreen,fuchsia,gainsboro,ghostwhite,gold,goldenrod,gray,grey,green,greenyellow,honeydew,hotpink,indianred,indigo,ivory,khaki,lavender,lavenderblush,lawngreen,lemonchiffon,lightblue,lightcoral,lightcyan,lightgoldenrodyellow,lightgray,lightgrey,lightgreen,lightpink,lightsalmon,lightseagreen,lightskyblue,lightslategray,lightslategrey,lightsteelblue,lightyellow,lime,limegreen,linen,magenta,maroon,mediumaquamarine,mediumblue,mediumorchid,mediumpurple,mediumseagreen,mediumslateblue,mediumspringgreen,mediumturquoise,mediumvioletred,midnightblue,mintcream,mistyrose,moccasin,navajowhite,navy,oldlace,olive,olivedrab,orange,orangered,orchid,palegoldenrod,palegreen,paleturquoise,palevioletred,papayawhip,peachpuff,peru,pink,plum,powderblue,purple,rebeccapurple,red,rosybrown,royalblue,saddlebrown,salmon,sandybrown,seagreen,seashell,sienna,silver,skyblue,slateblue,slategray,slategrey,snow,springgreen,steelblue,tan,teal,thistle,tomato,turquoise,violet,wheat,white,whitesmoke,yellow,yellowgreen);
 @include createOptionColors($predefinedColors);
@@ -81,20 +119,35 @@ $predefinedColors: (aliceblue,antiquewhite,aqua,aquamarine,azure,beige,bisque,bl
     background-color: #fff;
 }
 
-button#ok {
+button.ok {
     color: #fff;
     background-color: limegreen;
     @extend %button-border;
 }
 
-button#cancel {
+button.ok:hover {
+    background-color: darkgreen;
+    @extend %hover-default;
+}
+
+button.cancel {
     color: #fff;
     background-color: darkred;
     @extend %button-border;
 }
 
-button#return {
+button.cancel:hover {
+    background-color: firebrick;
+    @extend %hover-default;
+}
+
+button.return {
     color: #fff;
     background-color: darkgrey;
     @extend %button-border;
+}
+
+button.return:hover {
+    background-color: lightgrey;
+    @extend %hover-default;
 }

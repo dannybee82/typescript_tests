@@ -1,9 +1,9 @@
 export class CreateSelectElement {
 
-    create(targetId: string, selectId: string, options: string[], addClass?: boolean): void {
-        const elem: HTMLElement | null = document.getElementById(targetId);
+    create(className: string, selectId: string, options: string[], addClass?: boolean): void {
+        const element: HTMLElement | null = document.querySelector(className);
 
-        if(elem) {
+        if(element) {
             const select: HTMLSelectElement = document.createElement('select');
             select.id = selectId;
             select.className = 'default-select-color';
@@ -14,13 +14,13 @@ export class CreateSelectElement {
                 option.text = element;
 
                 if(addClass) {
-                    option.className = 'item-color-' + element;
+                    option.className = (element !== '') ? 'item-color-' + element : 'default-select-color';
                 }
 
                 select.appendChild(option);
             });
 
-            elem.appendChild(select);
+            element.appendChild(select);
         }
     }
 

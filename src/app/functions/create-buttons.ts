@@ -3,21 +3,21 @@ import { ButtonInterface } from "../interfaces/button.interface";
 export class CreateButtons {
 
     appendButtons(targetElement: string, buttons: ButtonInterface[]): void {
-        const elem: HTMLElement | null = document.getElementById(targetElement);
+        const element: HTMLElement | null = document.querySelector(targetElement);
 
-        if(elem) {
-            buttons.forEach(element => {
+        if(element) {
+            buttons.forEach(item => {
                 const button: HTMLButtonElement = document.createElement('button');
-                button.id = element.id;
-                button.textContent = element.text;
-                elem.appendChild(button);
+                button.className = item.className;
+                button.textContent = item.text;
+                element.appendChild(button);
             });
         }
     }
 
-    createButton(id: string, text: string): HTMLButtonElement {
+    createButton(className: string, text: string): HTMLButtonElement {
         const button: HTMLButtonElement = document.createElement('button');
-        button.id = id;
+        button.className = className;
         button.textContent = text;
 
         return button;

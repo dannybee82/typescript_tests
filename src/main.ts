@@ -13,8 +13,8 @@ export class Main {
         //Test 002.
         new InitReadFile();
 
-        //Test 003.
-        new ChangeColor("background-test", ['green', 'yellow', 'blue', 'pink', 'purple']);
+        //Test 003A.
+        new ChangeColor(".background-test", ['.green', '.yellow', '.blue', '.pink', '.purple']);
 
         //Test 003B
         new InitCreateSelect();

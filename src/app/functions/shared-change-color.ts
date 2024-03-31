@@ -1,11 +1,11 @@
 export class SharedChangeColor {
     
-    changeColor(targetId: string, color: string | null): void {
+    changeColor(targetClass: string, color: string | null): void {
         if(color) {
-            let elem: HTMLElement | null = document.getElementById(targetId);
+            let element: HTMLElement | null = document.querySelector(targetClass);
 
-            if(elem != null) {
-                elem.style.backgroundColor = color;
+            if(element != null) {
+                element.style.backgroundColor = color;
             }            
         }
     }
