@@ -151,3 +151,81 @@ button.return:hover {
     background-color: lightgrey;
     @extend %hover-default;
 }
+
+.invalid-date {
+    border: 2px solid red;
+}
+
+.valid-date {
+    border: 2px solid green;
+}
+
+input#dateField {
+    font-size: 16px;
+}
+
+// Calendar
+.calendar {
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: whitesmoke;
+    width: 300px;
+}
+
+.calendar-header {
+    width: inherit;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.calendar-button {
+    background-color: deepskyblue;
+    color: #fff;
+}
+
+.calendar-button:hover {
+    background-color: lightblue;
+    color: #000;
+}
+
+.calendar-current-month {
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.calendar-days {
+    table {
+        tr {
+            td {
+                width: 40px;
+                color: #000;
+                text-align: center;
+            }
+
+            td.today {
+                background-color: deepskyblue;
+                color: #fff;
+                font-weight: bold;
+                border-radius: 50%;
+            }
+
+            td.today:hover {
+                background-color: lightblue;
+                color: #000;
+                font-weight: bold;
+                border-radius: 50%;
+                @extend %hover-default;
+            }
+
+            td.day:hover {
+                background-color: deepskyblue;
+                color: #fff;
+                font-weight: bold;                    
+                border-radius: 50%;
+                @extend %hover-default;
+            }
+        }
+    }
+}
