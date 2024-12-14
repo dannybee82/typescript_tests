@@ -54,7 +54,8 @@
 
 body {
     background-image: linear-gradient(to bottom, cornflowerblue, lightblue, white);
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
 }
 
 select {
@@ -188,6 +189,7 @@ input#dateField {
 .calendar-button:hover {
     background-color: lightblue;
     color: #000;
+    cursor: pointer;
 }
 
 .calendar-current-month {
@@ -228,4 +230,40 @@ input#dateField {
             }
         }
     }
+}
+
+//Sorting
+ul.numbers-demo li {
+    list-style: none;
+}
+
+button.sort-numbers-asc-button, button.sort-numbers-desc-button {
+    background-color: deepskyblue;
+    color: whitesmoke;
+    padding: 2px;
+    border-radius: 5px;
+    border: none;
+}
+
+button.sort-numbers-asc-button:hover {
+    background-color: darkblue;
+    cursor: pointer;
+}
+
+button.sort-numbers-desc-button:hover {
+    background-color: darkblue;
+    cursor: pointer;
+}
+
+button.sort-numbers-reset-button {
+    background-color: lightcoral;
+    color: whitesmoke;
+    padding: 6px;
+    border-radius: 5px;
+    border: none;
+}
+
+button.sort-numbers-reset-button {
+    background-color: coral;
+    cursor: pointer;
 }

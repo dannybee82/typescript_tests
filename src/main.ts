@@ -5,6 +5,7 @@ import { InitDateValidation } from "./app/init/init-date-validation";
 import { InitReadFile } from "./app/init/init-read-file";
 import { InitShowMessage } from "./app/init/init-show-message";
 import { InitCalendar } from "./app/init/init-calendar";
+import { InitSortingNumbers } from "./app/init/init-sorting-numbers";
 
 export class Main {
 
@@ -29,6 +30,9 @@ export class Main {
 
         //Test 006 = Calendar-button + Calendar.
         new InitCalendar();
+
+        //Test 007 = Sorting numbers.
+        new InitSortingNumbers([3, 2, 7, 9, 10, 1, 4, 6, 5, 8]);
     }
 }
 
