@@ -18,6 +18,8 @@ _Experiments:/examples:_
 
 7\. create a simple calendar.
 
+8\. Sorting numbers and names.
+
 See the root-folder for the images with the examples.
 
 ## Installation + run app

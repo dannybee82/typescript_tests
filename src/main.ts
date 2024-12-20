@@ -5,7 +5,8 @@ import { InitDateValidation } from "./app/init/init-date-validation";
 import { InitReadFile } from "./app/init/init-read-file";
 import { InitShowMessage } from "./app/init/init-show-message";
 import { InitCalendar } from "./app/init/init-calendar";
-import { InitSortingNumbers } from "./app/init/init-sorting-numbers";
+import { InitSorting } from "./app/init/init-sorting";
+import { SortingDataInterface } from "./app/interfaces/sorting-data.interface";
 
 export class Main {
 
@@ -32,7 +33,26 @@ export class Main {
         new InitCalendar();
 
         //Test 007 = Sorting numbers.
-        new InitSortingNumbers([3, 2, 7, 9, 10, 1, 4, 6, 5, 8]);
+        const sortingNumbers: SortingDataInterface = {
+            data: [3, 2, 7, 9, 10, 1, 4, 6, 5, 8],
+            parentUlElementClass: '.numbers-demo',
+            ascendingButtonClass: '.sort-numbers-asc-button',
+            descendingButtonClass: '.sort-numbers-desc-button',
+            resetButtonClass: '.sort-numbers-reset-button'
+        };
+
+        new InitSorting(sortingNumbers);
+
+        //Test 008 = Sorting names.
+        const sortingNames: SortingDataInterface = {
+            data: ['Saskia', 'Matilda', 'Juliette', 'Caroline', 'Victoria', 'Abigaïl', 'Caitlin', 'Serana', 'Lydia'],
+            parentUlElementClass: '.names-demo',
+            ascendingButtonClass: '.sort-names-asc-button',
+            descendingButtonClass: '.sort-names-desc-button',
+            resetButtonClass: '.sort-names-reset-button'
+        };
+
+        new InitSorting(sortingNames);
     }
 }
 

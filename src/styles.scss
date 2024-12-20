@@ -237,7 +237,11 @@ ul.numbers-demo li {
     list-style: none;
 }
 
-button.sort-numbers-asc-button, button.sort-numbers-desc-button {
+ul.names-demo li {
+    list-style: none;
+}
+
+button.sorting-asc, button.sorting-desc {
     background-color: deepskyblue;
     color: whitesmoke;
     padding: 2px;
@@ -245,17 +249,17 @@ button.sort-numbers-asc-button, button.sort-numbers-desc-button {
     border: none;
 }
 
-button.sort-numbers-asc-button:hover {
+button.sorting-asc:hover {
     background-color: darkblue;
     cursor: pointer;
 }
 
-button.sort-numbers-desc-button:hover {
+button.sorting-desc:hover {
     background-color: darkblue;
     cursor: pointer;
 }
 
-button.sort-numbers-reset-button {
+button.sorting-reset {
     background-color: lightcoral;
     color: whitesmoke;
     padding: 6px;
@@ -263,7 +267,7 @@ button.sort-numbers-reset-button {
     border: none;
 }
 
-button.sort-numbers-reset-button {
+button.sorting-reset:hover {
     background-color: coral;
     cursor: pointer;
 }
